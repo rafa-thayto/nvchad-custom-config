@@ -12,38 +12,38 @@ local plugins = {
       {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
-          require "custom.configs.null-ls"
+          require("custom.configs.null-ls")
         end,
       },
     },
     config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
+      require("plugins.configs.lspconfig")
+      require("custom.configs.lspconfig")
     end, -- Override to setup mason-lspconfig
   },
 
   -- override plugin configs
   {
     "williamboman/mason.nvim",
-    opts = overrides.mason
+    opts = overrides.mason,
   },
 
   {
     "nvim-treesitter/nvim-treesitter",
     opts = overrides.treesitter,
+    dependencies = {
+      {
+        "nvim-treesitter/nvim-treesitter-context",
+        opts = {
+          enable = true,
+        },
+      },
+    },
   },
 
   {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
-    dependencies = {
-      {
-        "nvim-treesitter/nvim-treesitter-context",
-        opts = {
-          enable = true
-        }
-      }
-    }
   },
 
   -- Install a plugin
@@ -66,20 +66,22 @@ local plugins = {
       "TmuxNavigateRight",
       "TmuxNavigateDown",
       "TmuxNavigateUp",
-    }
+    },
   },
 
   {
     "iamcco/markdown-preview.nvim",
     ft = "markdown",
-    build = function() vim.fn["mkdp#util#install"]() end,
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
   },
 
   {
-    'ThePrimeagen/vim-be-good',
+    "ThePrimeagen/vim-be-good",
     cmd = {
       "VimBeGood",
-    }
+    },
   },
   -- To make a plugin not be loaded
   -- {
